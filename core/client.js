@@ -10,13 +10,17 @@ module.exports.start = async function () {
         try{
             fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json)
-            .then(data => {
-                console.log(count++);
+            .then(data => {z
+                count++;
+                if(count%100==0){
+                    console.log(count);
+                }
+                
             })
         }catch{
             console.log(s);
         }
-    },10)
+    },1)
 }
 
 var iterifyArr = function (arr) {
