@@ -10,7 +10,7 @@ module.exports.start = async function () {
         try{
             fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json)
-            .then(data => {z
+            .then(data => {
                 count++;
                 if(count%100==0){
                     console.log(count);
