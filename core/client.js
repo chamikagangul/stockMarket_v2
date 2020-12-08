@@ -38,7 +38,7 @@ module.exports.start = async function () {
 
                     core.DATA.push(d);
                     count++;
-                    if(count%100){
+                    if(count%100==0){
                         console.log(count);
                     }
                 } catch {
