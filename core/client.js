@@ -28,6 +28,7 @@ var iterifyArr = function (arr) {
     arr.next = function () {
         if (++cur >= this.length) {
             cur = 0
+            console.log("End of Array")
         }
         return this[cur];
     }
