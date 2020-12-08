@@ -10,6 +10,7 @@ module.exports.start = async function () {
     var Core = require("./core")
     let core = new Core();
 
+    count = 0;
     var query = setInterval(() => {
         s = symbols.next();
         if (s == false) {
@@ -36,6 +37,10 @@ module.exports.start = async function () {
                     }
 
                     core.DATA.push(d);
+                    count++;
+                    if(count%100){
+                        console.log(count);
+                    }
                 } catch {
                     //console.log(s);
                 }
