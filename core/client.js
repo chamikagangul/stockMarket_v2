@@ -37,7 +37,7 @@ module.exports.start = async function () {
 
                     core.DATA.push(d);
                 } catch {
-                    console.log(s);
+                    //console.log(s);
                 }
 
             })
