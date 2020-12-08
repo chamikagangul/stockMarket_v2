@@ -29,21 +29,19 @@ module.exports.start = async function () {
                     changePrecentage = data.quoteResponse.result[0].regularMarketChangePercent;
 
                     d = {
-                        "s": symbol,
                         "o": open_,
                         "p": marketPrice,
                         "c": change,
                         "cp": changePrecentage
                     }
 
-                    if (!core.SYMBOLS.includes(symbol)) {
-                        core.SYMBOLS.push(symbol);
-                        core.DATA.push(d);
-                        count++;
-                        if (count % 100 == 0) {
-                            console.log(count);
-                        }
+                    core.DATA[symbol] = d
+
+                    count++;
+                    if (count % 100 == 0) {
+                        console.log(count);
                     }
+
 
                 } catch {
                     //console.log(s);
