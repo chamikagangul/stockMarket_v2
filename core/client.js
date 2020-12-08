@@ -13,7 +13,8 @@ module.exports.start = async function () {
     var query = setInterval(() => {
         s = symbols.next();
         if (s == false) {
-            clearInterval(query);
+            console.log(core.DATA.length);
+           // clearInterval(query);
         }
 
         fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
@@ -39,6 +40,9 @@ module.exports.start = async function () {
                     console.log(s);
                 }
 
+            })
+            .catch((e)=>{
+                console.log(e);
             })
 
     }, 1)
