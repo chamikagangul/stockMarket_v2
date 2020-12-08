@@ -5,8 +5,11 @@ module.exports.start = async function () {
     count = 0;
     // symbols = symbols.slice(0,10000);
     iterifyArr(symbols);
-    setInterval(()=>{
+    var query = setInterval(()=>{
         s = symbols.next();
+        if(s==false){
+            clearInterval(query);
+        }
         try{
             fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json)
@@ -28,7 +31,7 @@ var iterifyArr = function (arr) {
     arr.next = function () {
         if (++cur >= this.length) {
             cur = 0
-            console.log("End of Array")
+            return false;
         }
         return this[cur];
     }
