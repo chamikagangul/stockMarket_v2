@@ -15,6 +15,7 @@ module.exports.start = async function () {
         s = symbols.next();
         if (s == false) {
             console.log(core.DATA.length);
+            count = 0;
             // clearInterval(query);
         }
 
