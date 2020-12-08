@@ -14,7 +14,8 @@ module.exports.start = async function () {
     var query = setInterval(() => {
         s = symbols.next();
         if (s == false) {
-            console.log(core.DATA.length);
+            console.log(Object.keys(core.DATA).length);
+            core.SYMBOLS = Object.keys(core.DATA);
             count = 0;
             // clearInterval(query);
         }
@@ -23,25 +24,29 @@ module.exports.start = async function () {
             .then(res => res.json())
             .then(data => {
                 try {
-                    symbol = data.quoteResponse.result[0].symbol;
-                    open_ = data.quoteResponse.result[0].regularMarketOpen;
-                    marketPrice = data.quoteResponse.result[0].regularMarketPrice;
-                    change = data.quoteResponse.result[0].regularMarketChange;
-                    changePrecentage = data.quoteResponse.result[0].regularMarketChangePercent;
-
-                    d = {
-                        "o": open_,
-                        "p": marketPrice,
-                        "c": change,
-                        "cp": changePrecentage
+                    if(data.quoteResponse.result !=[]){
+                        symbol = data.quoteResponse.result[0].symbol;
+                        open_ = data.quoteResponse.result[0].regularMarketOpen;
+                        marketPrice = data.quoteResponse.result[0].regularMarketPrice;
+                        change = data.quoteResponse.result[0].regularMarketChange;
+                        changePrecentage = data.quoteResponse.result[0].regularMarketChangePercent;
+    
+                        d = {
+                            "o": open_,
+                            "p": marketPrice,
+                            "c": change,
+                            "cp": changePrecentage
+                        }
+    
+                        core.DATA[symbol] = d
+                        count++;
+                        if (count % 100 == 0) {
+                            console.log(count);
+                        }
                     }
+                    
 
-                    core.DATA[symbol] = d
-
-                    count++;
-                    if (count % 100 == 0) {
-                        console.log(count);
-                    }
+                 
 
 
                 } catch {
