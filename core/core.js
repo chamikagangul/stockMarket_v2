@@ -2,7 +2,8 @@ class Core{
     constructor(){
         if(!Core.instance){
             Core.instance={
-                DATA : []
+                DATA : [],
+                SYMBOLS : []
             }
         }
         return Core.instance;

@@ -15,7 +15,7 @@ module.exports.start = async function () {
         s = symbols.next();
         if (s == false) {
             console.log(core.DATA.length);
-           // clearInterval(query);
+            // clearInterval(query);
         }
 
         fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
@@ -36,17 +36,21 @@ module.exports.start = async function () {
                         "cp": changePrecentage
                     }
 
-                    core.DATA.push(d);
-                    count++;
-                    if(count%100==0){
-                        console.log(count);
+                    if (!core.SYMBOLS.includes(symbol)) {
+                        core.SYMBOLS.push(symbol);
+                        core.DATA.push(d);
+                        count++;
+                        if (count % 100 == 0) {
+                            console.log(count);
+                        }
                     }
+
                 } catch {
                     //console.log(s);
                 }
 
             })
-            .catch((e)=>{
+            .catch((e) => {
                 console.log(e);
             })
 
