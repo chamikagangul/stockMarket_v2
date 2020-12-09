@@ -24,7 +24,7 @@ module.exports.start = async function () {
             .then(res => res.json())
             .then(data => {
                 try {
-                    if(!data.quoteResponse.result[0].regularMarketPrice){
+                    if(data.quoteResponse.result[0].regularMarketPrice){
                         symbol = data.quoteResponse.result[0].symbol;
                         open_ = data.quoteResponse.result[0].regularMarketOpen;
                         marketPrice = data.quoteResponse.result[0].regularMarketPrice;
