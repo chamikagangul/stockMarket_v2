@@ -13,13 +13,13 @@ module.exports.start = async function () {
     count = 0;
     var query = setInterval(() => {
         s = symbols.nextN(1000).join(",");
-        if (s == false) {
+        if (s[s.length-1] == false) {
             console.log(Object.keys(core.DATA).length);
             core.SYMBOLS = Object.keys(core.DATA);
             count = 0;
             // clearInterval(query);
         }
-
+        s = s.join(",")
         fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json())
             .then(stock => {
@@ -58,7 +58,7 @@ module.exports.start = async function () {
                 console.log(e);
             })
 
-    }, 100)
+    }, 500)
 }
 
 var iterifyArr = function (arr) {
@@ -74,11 +74,13 @@ var iterifyArr = function (arr) {
     arr.nextN = function (n) {
         start = cur;
         end = Math.min(cur + n, this.length);
-        if (++cur >= this.length) {
-            cur = 0;
-        }
         cur = cur + n;
-        return this.slice(start, end);
+        S = this.slice(start, end)
+        if (cur >= this.length) {
+            cur = 0;
+            S.push(false);
+        }
+        return S;
     }
     return arr;
 };
