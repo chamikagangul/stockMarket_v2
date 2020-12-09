@@ -4,10 +4,12 @@ let Core = require("../core/core")
 
 let core = new Core();
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/:p', function(req, res, next) {
+
+    p = req.params.p
     core.makeList();
     core.filter();
-    core.rankByPercentage();
+    core.rankByPercentageCustom(p);
     res.send(core.DATA_array.slice(0,100));
 });
 

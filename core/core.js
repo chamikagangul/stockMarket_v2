@@ -22,6 +22,12 @@ class Core {
                 },
                 rankByPercentage:()=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("cp"));
+                },
+                rankByChange:()=>{
+                    Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("c"));
+                },
+                rankByPercentageCustom:(p)=>{
+                    Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrderCustom("cp",p));
                 }
             }
         }
@@ -36,6 +42,17 @@ function GetSortOrder(prop) {
             return 1;    
         } else if (parseFloat(a[prop]) > parseFloat(b[prop])) {    
             return -1;    
+        }    
+        return 0;    
+    }    
+} 
+
+function GetSortOrderCustom(prop,p=0) {    
+    return function(a, b) {    
+        if (Math.abs(parseFloat(a[prop]) - p) < Math.abs(parseFloat(b[prop]) - p) ) {    
+            return -1;    
+        } else if (Math.abs(parseFloat(a[prop]) - p)  > Math.abs(parseFloat(b[prop]) - p) ) {    
+            return 1;    
         }    
         return 0;    
     }    
