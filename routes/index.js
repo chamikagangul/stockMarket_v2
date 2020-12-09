@@ -5,8 +5,7 @@ let Core = require("../core/core")
 let core = new Core();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    
-    res.send(core.DATA);
+    res.render('index');
 });
 
 module.exports = router;

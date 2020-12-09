@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500" rel="stylesheet" />
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <script src="../javascripts/main.js"></script>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="container">
+
+      <h1>Custom Stock Data</h1>
+      <button onclick="load(2)">2%</button>
+      <button onclick="load(4)">4%</button>
+      <button onclick="load(6)">6%</button>
+      <button onclick="load(8)">8%</button>
+      <table class="table responsive" id="sort">
+        <thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Open</th>
+            <th scope="col">Price</th>
+            <th scope="col">%</th>
+          </tr>
+        </thead>
+        <tbody id="tb">
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</body>
+
 </html>
