@@ -12,7 +12,7 @@ module.exports.start = async function () {
 
     count = 0;
     var query = setInterval(() => {
-        s = symbols.nextN(1000).join(",");
+        s = symbols.nextN(1000);
         if (s[s.length-1] == false) {
             console.log(Object.keys(core.DATA).length);
             core.SYMBOLS = Object.keys(core.DATA);
