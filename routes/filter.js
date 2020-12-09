@@ -5,8 +5,10 @@ let Core = require("../core/core")
 let core = new Core();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    res.send(core.DATA);
+    core.makeList();
+    core.filter();
+    core.rankByPercentage();
+    res.send(core.DATA_array.slice(0,100));
 });
 
 module.exports = router;
