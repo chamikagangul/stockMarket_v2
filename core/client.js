@@ -58,7 +58,7 @@ module.exports.start = async function () {
                 console.log(e);
             })
 
-    }, 1)
+    }, 10)
 }
 
 var iterifyArr = function (arr) {
