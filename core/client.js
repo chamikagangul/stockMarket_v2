@@ -1,4 +1,4 @@
-module.exports.start = async function () {
+module.exports.start = function () {
 
     symbols = require("../data/symbols.json")
     console.log("inside client");
