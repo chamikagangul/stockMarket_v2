@@ -12,7 +12,7 @@ module.exports.start = async function () {
 
     count = 0;
     var query = setInterval(() => {
-        s = symbols.next();
+        s = symbols.nextN(1000).join(",");
         if (s == false) {
             console.log(Object.keys(core.DATA).length);
             core.SYMBOLS = Object.keys(core.DATA);
@@ -22,28 +22,32 @@ module.exports.start = async function () {
 
         fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json())
-            .then(data => {
+            .then(stock => {
                 try {
-                    if(data.quoteResponse.result[0].regularMarketPrice){
-                        symbol = data.quoteResponse.result[0].symbol;
-                        open_ = data.quoteResponse.result[0].regularMarketOpen;
-                        marketPrice = data.quoteResponse.result[0].regularMarketPrice;
-                        change = data.quoteResponse.result[0].regularMarketChange;
-                        changePrecentage = data.quoteResponse.result[0].regularMarketChangePercent;
-    
-                        d = {
-                            "o": open_,
-                            "p": marketPrice,
-                            "c": change,
-                            "cp": changePrecentage
+                    stock.quoteResponse.result.forEach(stock => {
+                        if (stock.regularMarketPrice) {
+                            symbol = stock.symbol;
+                            open_ = stock.regularMarketOpen;
+                            marketPrice = stock.regularMarketPrice;
+                            change = stock.regularMarketChange;
+                            changePrecentage = stock.regularMarketChangePercent;
+
+                            d = {
+                                "o": open_,
+                                "p": marketPrice,
+                                "c": change,
+                                "cp": changePrecentage
+                            }
+
+                            core.DATA[symbol] = d
+                            count++;
+                            if (count % 100 == 0) {
+                                console.log(count);
+                            }
+                            //console.log(symbol)
                         }
-    
-                        core.DATA[symbol] = d
-                        count++;
-                        if (count % 100 == 0) {
-                            console.log(count);
-                        }
-                    }
+                    });
+
 
                 } catch {
                     //console.log(s);
@@ -54,7 +58,7 @@ module.exports.start = async function () {
                 console.log(e);
             })
 
-    }, 1)
+    }, 1000)
 }
 
 var iterifyArr = function (arr) {
@@ -67,5 +71,14 @@ var iterifyArr = function (arr) {
         return this[cur];
     }
     arr.current = function () { return this[cur] };
+    arr.nextN = function (n) {
+        start = cur;
+        end = Math.min(cur + n, this.length);
+        if (++cur >= this.length) {
+            cur = 0;
+        }
+        cur = cur + n;
+        return this.slice(start, end);
+    }
     return arr;
 };
