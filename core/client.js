@@ -12,14 +12,14 @@ module.exports.start = async function () {
 
     count = 0;
     var query = setInterval(() => {
-        s = symbols.nextN(5000);
+        s = symbols.nextN(2000);
         if (s[s.length-1] == false) {
             console.log(Object.keys(core.DATA).length);
             core.SYMBOLS = Object.keys(core.DATA);
             count = 0;
             // clearInterval(query);
         }
-        s = s.join(",")
+        s = s.slice(0,s.length-1).join(",")
         fetch("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + s)
             .then(res => res.json())
             .then(stock => {
@@ -41,7 +41,7 @@ module.exports.start = async function () {
 
                             core.DATA[symbol] = d
                             count++;
-                            if (count % 100 == 0) {
+                            if (count % 1000 == 0) {
                                 console.log(count);
                             }
                             //console.log(symbol)
