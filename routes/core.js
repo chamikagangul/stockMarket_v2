@@ -10,7 +10,7 @@ router.get('/:p', function(req, res, next) {
     core.makeList();
     core.filter();
     core.rankByPercentageCustom(p);
-    res.send(core.DATA_array.slice(0,100));
+    res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
 });
 
 module.exports = router;

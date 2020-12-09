@@ -28,6 +28,13 @@ class Core {
                 },
                 rankByPercentageCustom:(p)=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrderCustom("cp",p));
+                },
+                getSymbolsFromArray:(DATA)=>{
+                    let SYMBOLS = [];
+                    DATA.forEach(stock => {
+                        SYMBOLS.push(stock["s"]);
+                    });
+                    return SYMBOLS;
                 }
             }
         }
