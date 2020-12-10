@@ -48,6 +48,24 @@ function load(p) {
     });
 }
 
+function loadUp(p) {
+    $.get("/core/up/" + p, function (data, status) {
+        symbols = data.join(",")
+        ht = ""
+        data.forEach(s => {
+
+            ht = ht
+                + "<tr>"
+                + "<td id=" + s + "_symbol ></td>"
+                + "<td id=" + s + "_price ></td>"
+                + "<td id=" + s + "_change ></td>"
+                + "<td id=" + s + "_percentage></td>"
+                + "</tr>"
+        });
+        $("#tb").html(ht);
+    });
+}
+
 
 function sort(prop) {
     if ($(this).attr("status")) {

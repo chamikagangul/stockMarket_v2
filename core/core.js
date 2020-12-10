@@ -29,6 +29,20 @@ class Core {
                 rankByPercentageCustom:(p)=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrderCustom("cp",p));
                 },
+                rankByPercentageCustomUp:(p)=>{
+                    if(p>0){
+                        Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
+                            return parseFloat(stock["cp"])>p;
+                        });
+                    }else{
+                        Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
+                            return parseFloat(stock["cp"])<p;
+                        });
+                    }
+                   
+                    Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrderCustom("cp",p));
+                    
+                },
                 getSymbolsFromArray:(DATA)=>{
                     let SYMBOLS = [];
                     DATA.forEach(stock => {

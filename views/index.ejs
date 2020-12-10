@@ -32,7 +32,7 @@
       <script src="http://query1.finance.yahoo.com/v7/finance/quote?symbols=TSLA"></script>
       <h1>Custom Stock Data</h1>
       <button onclick="load(9999999)" class="btn btn-success">Gainers</button>
-      <button onclick="load(8)" class="btn btn-success">Gap up 8%</button>
+      <button onclick="loadUp(8)" class="btn btn-success">Gap up 8%</button>
       <button onclick="load(6)" class="btn btn-success">Gap up 6%</button>
       <button onclick="load(4)" class="btn btn-success">Gap up 4%</button>
       <button onclick="load(2)" class="btn btn-success">Gap up 2%</button>
@@ -40,7 +40,7 @@
       <button onclick="load(-2)" class="btn btn-danger">Gap down 2%</button>
       <button onclick="load(-4)" class="btn btn-danger">Gap down 4%</button>
       <button onclick="load(-6)" class="btn btn-danger">Gap down 6%</button>
-      <button onclick="load(-8)" class="btn btn-danger">Gap down 8%</button>
+      <button onclick="loadUp(-8)" class="btn btn-danger">Gap down 8%</button>
       <button onclick="load(-9999999)" class="btn btn-danger">Losers</button>
       <br><br>
       <table class="table table-dark" id="sort">
