@@ -1,11 +1,12 @@
 symbols = "";
 stocks = [];
 $(document).ready(function () {
+
     load(10);
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
-        $.get("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
+        $.get("https://chami-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
             stocks_ = JSON.parse(data);
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
@@ -24,6 +25,10 @@ $(document).ready(function () {
         });
     }, 1000)
 });
+
+function logResults(json) {
+    console.log(json);
+}
 
 function load(p) {
     $.get("/core/" + p, function (data, status) {
@@ -50,7 +55,7 @@ function sort(prop) {
     } else {
         $(this).attr("status", 1);
     }
-    stocks = stocks.sort(GetSortOrder(prop,$(this).attr("status")));
+    stocks = stocks.sort(GetSortOrder(prop, $(this).attr("status")));
     htm = "";
     stocks.forEach(stock => {
         s = stock.symbol;
@@ -68,7 +73,7 @@ function sort(prop) {
 }
 
 //Comparer Function    
-function GetSortOrder(prop,t) {
+function GetSortOrder(prop, t) {
 
     return function (a, b) {
         if (a[prop] < b[prop]) {
