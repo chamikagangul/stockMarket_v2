@@ -6,8 +6,9 @@ $(document).ready(function () {
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
-        $.get("https://chami-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
-            stocks_ = JSON.parse(data);
+        $.get("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
+            //stocks_ = JSON.parse(data);
+            stocks_ = data;
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
                 s = {
