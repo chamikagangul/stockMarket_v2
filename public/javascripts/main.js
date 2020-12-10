@@ -44,7 +44,12 @@ function load(p) {
 
 
 function sort(prop) {
-    stocks = stocks.sort(GetSortOrder(prop));
+    if ($(this).attr("status")) {
+        $(this).attr("status", $(this).attr("status") * -1)
+    } else {
+        $(this).attr("status", 1);
+    }
+    stocks = stocks.sort(GetSortOrder(prop,$(this).attr("status")));
     htm = "";
     stocks.forEach(stock => {
         s = stock.symbol;
@@ -58,11 +63,11 @@ function sort(prop) {
     });
     $("#tb").html(htm);
     updateTable();
-    
+
 }
 
 //Comparer Function    
-function GetSortOrder(prop) {
+function GetSortOrder(prop,t) {
 
     return function (a, b) {
         if (a[prop] < b[prop]) {
@@ -72,17 +77,17 @@ function GetSortOrder(prop) {
         }
         return 0;
     }
-} 
+}
 
-function updateTable(){
+function updateTable() {
     stocks.forEach(stock => {
         $("#" + stock.symbol + "_symbol").html(stock.symbol);
         $("#" + stock.symbol + "_price").html(stock.price);
         $("#" + stock.symbol + "_change").html(stock.change.toFixed(3));
         $("#" + stock.symbol + "_percentage").html(stock.percentage.toFixed(2) + "%");
-        if(stock.percentage<0){
+        if (stock.percentage < 0) {
             $("#" + stock.symbol + "_percentage").css('color', 'red');
-        }else{
+        } else {
             $("#" + stock.symbol + "_percentage").css('color', 'green');
         }
     });
