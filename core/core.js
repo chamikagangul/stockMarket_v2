@@ -17,7 +17,7 @@ class Core {
                 filter : ()=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
                         
-                        return (parseFloat(stock["bidSize"])>0 || parseFloat(stock["askSize"])>0) && parseFloat(stock["o"])<parseFloat(stock["p"]) && parseFloat(stock["p"])>5;
+                        return (parseFloat(stock["bidSize"])>0 || parseFloat(stock["askSize"])>0) && parseFloat(stock["p"])>5;
                     });
                 },
                 rankByPercentage:()=>{
