@@ -1,36 +1,89 @@
 symbols = "";
+stocks = [];
 $(document).ready(function () {
     load(10);
+
     setInterval(() => {
         $.get("https://chami-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
-            stocks = JSON.parse(data);
-            stocks.quoteResponse.result.forEach(stock => {
-                
-                $("#"+stock.symbol+ "_symbol").html(stock.symbol);
-                $("#"+stock.symbol+ "_open").html(stock.regularMarketOpen);
-                $("#"+stock.symbol+ "_price").html(stock.regularMarketPrice);
-                $("#"+stock.symbol+ "_percentage").html(stock.regularMarketChangePercent);
-               
+            stocks_ = JSON.parse(data);
+            stocks = []
+            stocks_.quoteResponse.result.forEach(stock => {
+                s = {
+                    "symbol": stock.symbol,
+                    "price": stock.regularMarketPrice,
+                    "change": stock.regularMarketChange,
+                    "percentage": stock.regularMarketChangePercent
+                }
+
+                stocks.push(s);
             });
-           
+            updateTable();
+
             console.log(stocks);
         });
     }, 1000)
 });
 
-function load(p){
-    $.get("/core/"+p, function (data, status) {
+function load(p) {
+    $.get("/core/" + p, function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
+
             ht = ht
                 + "<tr>"
                 + "<td id=" + s + "_symbol ></td>"
-                + "<td id=" + s + "_open ></td>"
                 + "<td id=" + s + "_price ></td>"
+                + "<td id=" + s + "_change ></td>"
                 + "<td id=" + s + "_percentage></td>"
                 + "</tr>"
         });
         $("#tb").html(ht);
+    });
+}
+
+
+function sort(prop) {
+    stocks = stocks.sort(GetSortOrder(prop));
+    htm = "";
+    stocks.forEach(stock => {
+        s = stock.symbol;
+        htm = htm
+            + "<tr>"
+            + "<td id=" + s + "_symbol ></td>"
+            + "<td id=" + s + "_price ></td>"
+            + "<td id=" + s + "_change ></td>"
+            + "<td id=" + s + "_percentage></td>"
+            + "</tr>"
+    });
+    $("#tb").html(htm);
+    updateTable();
+    
+}
+
+//Comparer Function    
+function GetSortOrder(prop) {
+
+    return function (a, b) {
+        if (a[prop] < b[prop]) {
+            return 1 * t;
+        } else if (a[prop] > b[prop]) {
+            return -1 * t;
+        }
+        return 0;
+    }
+} 
+
+function updateTable(){
+    stocks.forEach(stock => {
+        $("#" + stock.symbol + "_symbol").html(stock.symbol);
+        $("#" + stock.symbol + "_price").html(stock.price);
+        $("#" + stock.symbol + "_change").html(stock.change.toFixed(3));
+        $("#" + stock.symbol + "_percentage").html(stock.percentage.toFixed(2) + "%");
+        if(stock.percentage<0){
+            $("#" + stock.symbol + "_percentage").css('color', 'red');
+        }else{
+            $("#" + stock.symbol + "_percentage").css('color', 'green');
+        }
     });
 }
