@@ -4,7 +4,8 @@ $(document).ready(function () {
     load(10);
 
     setInterval(() => {
-        $.get("https://chami-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
+        //https://chami-cors.herokuapp.com/
+        $.get("http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
             stocks_ = JSON.parse(data);
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
