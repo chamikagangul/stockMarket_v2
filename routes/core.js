@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
     core.makeList();
     if(parseFloat(h)>0){
         core.filterByPrecentage(l,h);
-        core.rankByPercentage(-1);
+        core.rankByChange(1);
     }else{
         core.filterByPrecentage(h,l);
-        core.rankByPercentage(1);
+        core.rankByChange(-1);
     }
     
     res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
