@@ -4,21 +4,33 @@ let Core = require("../core/core")
 
 let core = new Core();
 /* GET home page. */
-router.get('/:p', function(req, res, next) {
-
-    p = req.params.p
+router.get('/', function(req, res, next) {
+    h = parseFloat(req.query.h)
+    l = parseFloat(req.query.l)
     core.makeList();
-    core.filter();
-    core.rankByPercentageCustom(p);
+    if(parseFloat(h)>0){
+        core.filterByPrecentage(l,h);
+        core.rankByPercentage(-1);
+    }else{
+        core.filterByPrecentage(h,l);
+        core.rankByPercentage(1);
+    }
+    
     res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
 });
 
-router.get('/up/:p', function(req, res, next) {
+router.get('/gainorLoss/', function(req, res, next) {
 
-    p = req.params.p
+    h = parseFloat(req.query.h)
+    l = parseFloat(req.query.l)
     core.makeList();
-    core.filter();
-    core.rankByPercentageCustomUp(p);
+    if(parseFloat(h)>0){
+        core.filterByPrecentage(l,h);
+        core.rankByPercentage(1);
+    }else{
+        core.filterByPrecentage(h,l);
+        core.rankByPercentage(-1);
+    }
     res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
 });
 

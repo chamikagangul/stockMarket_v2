@@ -31,8 +31,8 @@ function logResults(json) {
     console.log(json);
 }
 
-function load(p) {
-    $.get("/core/" + p, function (data, status) {
+function load(l,h) {
+    $.get("/core?l=" + l+"&h="+h, function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
@@ -49,8 +49,8 @@ function load(p) {
     });
 }
 
-function loadUp(p) {
-    $.get("/core/up/" + p, function (data, status) {
+function loadGainOrLoss(l,h) {
+    $.get("/core/gainorloss?l=" + l+"&h="+h, function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {

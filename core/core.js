@@ -14,14 +14,19 @@ class Core {
                         Core.instance.DATA_array.push(stock);
                     });
                 },
+                filterByPrecentage : (lowwerLimit,upperLimit)=>{
+                    Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
+                        return lowwerLimit<parseFloat(stock["cp"]) && parseFloat(stock["cp"])<upperLimit  && parseFloat(stock["p"])>5;
+                    });
+                },
+                rankByPercentage:(oder)=>{
+                    Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("cp",oder));
+                },
                 filter : ()=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
                         
                         return (parseFloat(stock["bidSize"])>0 || parseFloat(stock["askSize"])>0) && parseFloat(stock["p"])>5;
                     });
-                },
-                rankByPercentage:()=>{
-                    Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("cp"));
                 },
                 rankByChange:()=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("c"));
@@ -57,12 +62,13 @@ class Core {
 }
 
 //Comparer Function    
-function GetSortOrder(prop) {    
+function GetSortOrder(prop,oder=1) {  
+    console.log(oder);  
     return function(a, b) {    
         if (parseFloat(a[prop]) <  parseFloat(b[prop])) {    
-            return 1;    
+            return 1*oder;    
         } else if (parseFloat(a[prop]) > parseFloat(b[prop])) {    
-            return -1;    
+            return -1*oder;    
         }    
         return 0;    
     }    
@@ -78,5 +84,6 @@ function GetSortOrderCustom(prop,p=0) {
         return 0;    
     }    
 } 
+
 
 module.exports = Core;
