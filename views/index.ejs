@@ -36,27 +36,31 @@
       <button onclick="load(6)" class="btn btn-success">Gap up 6%</button>
       <button onclick="load(4)" class="btn btn-success">Gap up 4%</button>
       <button onclick="load(2)" class="btn btn-success">Gap up 2%</button>
-     
+
       <button onclick="load(-2)" class="btn btn-danger">Gap down 2%</button>
       <button onclick="load(-4)" class="btn btn-danger">Gap down 4%</button>
       <button onclick="load(-6)" class="btn btn-danger">Gap down 6%</button>
       <button onclick="loadUp(-8)" class="btn btn-danger">Gap down 8%</button>
       <button onclick="load(-9999999)" class="btn btn-danger">Losers</button>
       <br><br>
-      <table class="table table-dark" id="sort">
-        <thead>
-          <tr>
-            <th scope="col" onclick="sort('symbol',-1)">Symbol</th>
-            <th scope="col" onclick="sort('price')">Price</th>
-            <th scope="col" onclick="sort('change')">Change</th>
-            <th scope="col" onclick="sort('percentage')">%</th>
-          </tr>
-        </thead>
-        <tbody id="tb">
+      <div class="zui-wrapper">
+        <div class="zui-scroller">
+          <table class="zui-table table table-dark" id="sort">
+            <thead>
+              <tr>
+                <th scope="col" onclick="sort('symbol',-1)" class="zui-sticky-col">Symbol</th>
+                <th scope="col" onclick="sort('price')">Price</th>
+                <th scope="col" onclick="sort('change')">Change</th>
+                <th scope="col" onclick="sort('percentage')">%</th>
+              </tr>
+            </thead>
+            <tbody id="tb">
 
 
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
