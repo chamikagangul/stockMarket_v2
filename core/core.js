@@ -63,7 +63,6 @@ class Core {
 
 //Comparer Function    
 function GetSortOrder(prop,oder=1) {  
-    console.log(oder);  
     return function(a, b) {    
         if (parseFloat(a[prop]) <  parseFloat(b[prop])) {    
             return 1*oder;    
