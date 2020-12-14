@@ -24,14 +24,28 @@ router.get('/gainorLoss/', function(req, res, next) {
     h = parseFloat(req.query.h)
     l = parseFloat(req.query.l)
     core.makeList();
+    core.filterByPrice(0,1000);
     if(parseFloat(h)>0){
         core.filterByPrecentage(l,h);
-        core.rankByPercentage(1);
+        core.rankByChange(1);
     }else{
         core.filterByPrecentage(h,l);
-        core.rankByPercentage(-1);
+        core.rankByChange(-1);
     }
+    
     res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
+
+    // h = parseFloat(req.query.h)
+    // l = parseFloat(req.query.l)
+    // core.makeList();
+    // if(parseFloat(h)>0){
+    //     core.filterByPrecentage(l,h);
+    //     core.rankByPercentage(1);
+    // }else{
+    //     core.filterByPrecentage(h,l);
+    //     core.rankByPercentage(-1);
+    // }
+    // res.send(core.getSymbolsFromArray(core.DATA_array.slice(0,30)));
 });
 
 module.exports = router;

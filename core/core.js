@@ -19,7 +19,11 @@ class Core {
                         return lowwerLimit<parseFloat(stock["cp"]) && parseFloat(stock["cp"])<upperLimit  && parseFloat(stock["p"])>5;
                     });
                 },
-               
+                filterByPrice : (lowwerLimit,upperLimit)=>{
+                    Core.instance.DATA_array = Core.instance.DATA_array.filter((stock)=>{
+                        return lowwerLimit<parseFloat(stock["p"]) && parseFloat(stock["p"])<upperLimit;
+                    });
+                },
                 rankByPercentage:(oder)=>{
                     Core.instance.DATA_array = Core.instance.DATA_array.sort(GetSortOrder("cp",oder));
                 },
