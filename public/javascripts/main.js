@@ -2,7 +2,7 @@ symbols = "";
 stocks = [];
 $(document).ready(function () {
 
-    load(10);
+    loadGainOrLoss(0,10000000)
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
