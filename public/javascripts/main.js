@@ -2,11 +2,12 @@ symbols = "";
 stocks = [];
 $(document).ready(function () {
 
-    loadGainOrLoss(0,10000000)
+    load(0,10000000)
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
-        $.get("https://aldrin-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
+        //https://aldrin-cors.herokuapp.com/
+        $.get("https://chami-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
             stocks_ = JSON.parse(data);
             //stocks_ = data;
             stocks = []
@@ -32,7 +33,7 @@ function logResults(json) {
 }
 
 function load(l,h) {
-    $.get("/core?l=" + l+"&h="+h, function (data, status) {
+    $.get("/core?l=" + l+"&h="+h+"&s=30", function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
@@ -49,23 +50,23 @@ function load(l,h) {
     });
 }
 
-function loadGainOrLoss(l,h) {
-    $.get("/core/gainorloss?l=" + l+"&h="+h, function (data, status) {
-        symbols = data.join(",")
-        ht = ""
-        data.forEach(s => {
+// function loadGainOrLoss(l,h) {
+//     $.get("/core/gainorloss?l=" + l+"&h="+h+"&s=30", function (data, status) {
+//         symbols = data.join(",")
+//         ht = ""
+//         data.forEach(s => {
 
-            ht = ht
-                + "<tr>"
-                + "<td id=" + s + "_symbol class='zui-sticky-col'></td>"
-                + "<td id=" + s + "_price ></td>"
-                + "<td id=" + s + "_change ></td>"
-                + "<td id=" + s + "_percentage></td>"
-                + "</tr>"
-        });
-        $("#tb").html(ht);
-    });
-}
+//             ht = ht
+//                 + "<tr>"
+//                 + "<td id=" + s + "_symbol class='zui-sticky-col'></td>"
+//                 + "<td id=" + s + "_price ></td>"
+//                 + "<td id=" + s + "_change ></td>"
+//                 + "<td id=" + s + "_percentage></td>"
+//                 + "</tr>"
+//         });
+//         $("#tb").html(ht);
+//     });
+// }
 
 
 function sort(prop) {
