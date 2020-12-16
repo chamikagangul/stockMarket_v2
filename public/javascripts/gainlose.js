@@ -57,7 +57,7 @@ function changeState(s) {
 
 function load(l, h) {
 
-    $.get("/core?l=" + l + "&h=" + h + "&s=30", function (data, status) {
+    $.get("/core?l=" + l + "&h=" + h + "&s=40", function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
