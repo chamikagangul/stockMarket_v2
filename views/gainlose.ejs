@@ -19,7 +19,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="../javascripts/main.js"></script>
+  <script src="../javascripts/gainlose.js"></script>
   <link rel="stylesheet" href="../stylesheets/style.css">
 
 
@@ -30,17 +30,8 @@
   <div class="row">
     <div class="container">
       <h1>Custom Stock Data</h1>
-      <button onclick="load(0,9999999)" class="btn btn-success">Gainers</button>
-      <button onclick="load(8,100)" class="btn btn-success">Gap up 8%</button>
-      <button onclick="load(6,8)" class="btn btn-success">Gap up 6%</button>
-      <button onclick="load(4,6)" class="btn btn-success">Gap up 4%</button>
-      <button onclick="load(2,4)" class="btn btn-success">Gap up 2%</button>
-
-      <button onclick="load(-4,-2)" class="btn btn-danger">Gap down 2%</button>
-      <button onclick="load(-6,-4)" class="btn btn-danger">Gap down 4%</button>
-      <button onclick="load(-8,-6)" class="btn btn-danger">Gap down 6%</button>
-      <button onclick="load(-100,-8)" class="btn btn-danger">Gap down 8%</button>
-      <button onclick="load(-9999999,0)" class="btn btn-danger">Losers</button>
+      <button onclick="load(0,9999999);changeState('g')" class="btn btn-success">Gainers</button>
+      <button onclick="load(-9999999,0);changeState('l')" class="btn btn-danger">Losers</button>
       <br><br>
       <div class="zui-wrapper">
         <div class="zui-scroller">

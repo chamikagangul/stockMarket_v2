@@ -8,4 +8,8 @@ router.get('/', function(req, res, next) {
     res.render('index');
 });
 
+router.get('/gainlose', function(req, res, next) {
+    res.render('gainlose');
+});
+
 module.exports = router;
