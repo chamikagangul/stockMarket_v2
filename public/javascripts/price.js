@@ -1,28 +1,8 @@
 symbols = "";
 stocks = [];
-state = "g"
-
-status_ = {
-    g: {
-        h: 9999999,
-        l: 0
-    },
-    l: {
-        l: -9999999,
-        h: 0
-    }
-}
-
-
-
 $(document).ready(function () {
 
     load(0, 10000000)
-
-    setInterval(() => {
-        //console.log(status_);
-        load(status_[state].l, status_[state].h);
-    }, 60 * 1000);
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
@@ -33,10 +13,10 @@ $(document).ready(function () {
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
                 s = {
-                    "symbol": stock.symbol || 0,
-                    "price": stock.regularMarketPrice || 0,
-                    "change": stock.regularMarketChange || 0,
-                    "percentage": stock.regularMarketChangePercent || 0
+                    "symbol": stock.symbol || 0 ,
+                    "price": stock.regularMarketPrice || 0 ,
+                    "change": stock.regularMarketChange || 0 ,
+                    "percentage": stock.regularMarketChangePercent || 0 
                 }
 
                 stocks.push(s);
@@ -45,19 +25,16 @@ $(document).ready(function () {
 
             console.log(stocks);
         });
-    },  1000)
+    }, 1000)
 
 });
 
-function changeState(s) {
-    state = s;
+function logResults(json) {
+    console.log(json);
 }
 
-
-
-function load(l, h) {
-
-    $.get("/core?l=" + l + "&h=" + h + "&s=50", function (data, status) {
+function load(l, h,gl) {
+    $.get("/core/price?l=" + l + "&h=" + h +"&gl="+gl+ "&s=50", function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
@@ -144,7 +121,7 @@ function updateTable() {
         }
     });
 
-
+    
 
 }
 

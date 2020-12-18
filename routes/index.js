@@ -12,4 +12,8 @@ router.get('/gainlose', function(req, res, next) {
     res.render('gainlose');
 });
 
+router.get('/price', function(req, res, next) {
+    res.render('price');
+});
+
 module.exports = router;

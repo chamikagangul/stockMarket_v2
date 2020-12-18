@@ -14,10 +14,10 @@ $(document).ready(function () {
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
                 s = {
-                    "symbol": stock.symbol,
-                    "price": stock.regularMarketPrice,
-                    "change": stock.regularMarketChange,
-                    "percentage": stock.regularMarketChangePercent
+                    "symbol": stock.symbol || 0,
+                    "price": stock.regularMarketPrice || 0,
+                    "change": stock.regularMarketChange || 0,
+                    "percentage": stock.regularMarketChangePercent || 0
                 }
 
                 stocks.push(s);

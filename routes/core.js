@@ -15,9 +15,31 @@ router.get('/', function (req, res, next) {
         user.filterBy('cp', l, h);
         user.rankBy('c', 1);
     } else {
-        user.filterBy('cp', l,h);
+        user.filterBy('cp', l, h);
         user.rankBy('c', -1);
     }
+    res.send(user.getSymbolsFromArray(user.DATA_array.slice(0, s)));
+});
+
+
+router.get('/price/', function (req, res, next) {
+    h = parseFloat(req.query.h)
+    l = parseFloat(req.query.l)
+    s = parseInt(req.query.s)
+    gl = req.query.gl
+    let user = new User();
+    user.filterBy('p', l, h);
+
+
+    if (gl == 'g') {
+        user.filterBy('cp', 0, 100000000);
+
+        user.rankBy('c', 1);
+    } else {
+        user.filterBy('cp', -100000000,0);
+        user.rankBy('c', -1);
+    }
+
     res.send(user.getSymbolsFromArray(user.DATA_array.slice(0, s)));
 });
 
