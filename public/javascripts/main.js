@@ -7,7 +7,7 @@ $(document).ready(function() {
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
-        $.get("https://aldrin-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?corsDomain=false&symbols=" + symbols, function(data, status) {
+        $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function(data, status) {
             //stocks_ = JSON.parse(data);
 
             stocks_ = data;
@@ -23,7 +23,6 @@ $(document).ready(function() {
                 stocks.push(s);
             });
             updateTable();
-
 
         });
     }, 1000)
