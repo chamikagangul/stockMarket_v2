@@ -16,23 +16,20 @@ $(document).ready(function() {
                 s = {
                     "symbol": stock.symbol || 0,
                     "price": stock.regularMarketPrice || 0,
-                    "change": stock.regularMarketPrice * stock.regularMarketChangePercent / 100 || 0,
+                    "change": stock.regularMarketChange || 0,
                     "percentage": stock.regularMarketChangePercent || 0
                 }
-                console.log(stock)
+
                 stocks.push(s);
             });
             updateTable();
 
-            console.log(stocks);
+
         });
     }, 1000)
 
 });
 
-function logResults(json) {
-    console.log(json);
-}
 
 function load(l, h) {
     $.get("/core?l=" + l + "&h=" + h + "&s=50", function(data, status) {
