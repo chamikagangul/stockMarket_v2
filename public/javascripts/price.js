@@ -1,22 +1,22 @@
 symbols = "";
 stocks = [];
-$(document).ready(function () {
+$(document).ready(function() {
 
     load(0, 10000000)
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
-        $.get("https://aldrin-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
-            stocks_ = JSON.parse(data);
-            //stocks_ = data;
+        $.get("https://aldrin-cors.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function(data, status) {
+            //stocks_ = JSON.parse(data);
+            stocks_ = data;
             stocks = []
             stocks_.quoteResponse.result.forEach(stock => {
                 s = {
-                    "symbol": stock.symbol || 0 ,
-                    "price": stock.regularMarketPrice || 0 ,
-                    "change": stock.regularMarketChange || 0 ,
-                    "percentage": stock.regularMarketChangePercent || 0 
+                    "symbol": stock.symbol || 0,
+                    "price": stock.regularMarketPrice || 0,
+                    "change": stock.regularMarketChange || 0,
+                    "percentage": stock.regularMarketChangePercent || 0
                 }
 
                 stocks.push(s);
@@ -33,19 +33,19 @@ function logResults(json) {
     console.log(json);
 }
 
-function load(l, h,gl) {
-    $.get("/core/price?l=" + l + "&h=" + h +"&gl="+gl+ "&s=50", function (data, status) {
+function load(l, h, gl) {
+    $.get("/core/price?l=" + l + "&h=" + h + "&gl=" + gl + "&s=50", function(data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
 
-            ht = ht
-                + "<tr>"
-                + "<td id=" + s + "_symbol class='zui-sticky-col'></td>"
-                + "<td id=" + s + "_price ></td>"
-                + "<td id=" + s + "_change ></td>"
-                + "<td id=" + s + "_percentage></td>"
-                + "</tr>"
+            ht = ht +
+                "<tr>" +
+                "<td id=" + s + "_symbol class='zui-sticky-col'></td>" +
+                "<td id=" + s + "_price ></td>" +
+                "<td id=" + s + "_change ></td>" +
+                "<td id=" + s + "_percentage></td>" +
+                "</tr>"
         });
         $("#tb").html(ht);
     });
@@ -82,13 +82,13 @@ function sort(prop) {
     htm = "";
     stocks.forEach(stock => {
         s = stock.symbol;
-        htm = htm
-            + "<tr>"
-            + "<td id=" + s + "_symbol class='zui-sticky-col'></td>"
-            + "<td id=" + s + "_price ></td>"
-            + "<td id=" + s + "_change ></td>"
-            + "<td id=" + s + "_percentage></td>"
-            + "</tr>"
+        htm = htm +
+            "<tr>" +
+            "<td id=" + s + "_symbol class='zui-sticky-col'></td>" +
+            "<td id=" + s + "_price ></td>" +
+            "<td id=" + s + "_change ></td>" +
+            "<td id=" + s + "_percentage></td>" +
+            "</tr>"
     });
     $("#tb").html(htm);
     updateTable();
@@ -98,7 +98,7 @@ function sort(prop) {
 //Comparer Function    
 function GetSortOrder(prop, t) {
 
-    return function (a, b) {
+    return function(a, b) {
         if (a[prop] < b[prop]) {
             return 1 * t;
         } else if (a[prop] > b[prop]) {
@@ -121,10 +121,6 @@ function updateTable() {
         }
     });
 
-    
+
 
 }
-
-
-
-
