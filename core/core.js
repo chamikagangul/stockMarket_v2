@@ -4,6 +4,7 @@ class Core {
             Core.instance = {
                 DATA: {},
                 SYMBOLS: [],
+                WATCHLIST: [],
                 DATA_array:[],
                 makeList: () => {
                     Core.instance.DATA_array = []

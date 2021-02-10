@@ -1,8 +1,17 @@
 symbols = "";
 stocks = [];
+watchlist = []
 $(document).ready(function() {
 
     load(0, 10000000)
+
+    
+
+    $.get("/watchlist" + symbols, function(data, status) {
+        watchlist = data
+        console.log(watchlist);
+    });
+
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
@@ -81,7 +90,7 @@ function sort(prop) {
         s = stock.symbol;
         htm = htm +
             "<tr>" +
-            "<td id=" + s + "_symbol class='zui-sticky-col'></td>" +
+            "<td id=" + s + "_symbol class='zui-sticky-col'>< /td>" +
             "<td id=" + s + "_price ></td>" +
             "<td id=" + s + "_change ></td>" +
             "<td id=" + s + "_percentage></td>" +
@@ -107,7 +116,9 @@ function GetSortOrder(prop, t) {
 
 function updateTable() {
     stocks.forEach(stock => {
-        $("#" + stock.symbol + "_symbol").html(stock.symbol);
+        $("#" + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
+            stock.symbol + "' target = '_blank'"+(watchlist.indexOf(stock.symbol)>=0 ? "class = 'watchlist'" : "" )+" >" +
+            stock.symbol + "</a>");
         $("#" + stock.symbol + "_price").html(stock.price.toFixed(3));
         $("#" + stock.symbol + "_change").html(stock.change.toFixed(3));
         $("#" + stock.symbol + "_percentage").html(stock.percentage.toFixed(2) + "%");

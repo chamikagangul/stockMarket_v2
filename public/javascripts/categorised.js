@@ -48,7 +48,7 @@ function load() {
     symbols = "";
     s = 10;
     LOAD.forEach(category => {
-        $.get("/core?l=" + category[1] + "&h=" + category[2] + "&s=" + s, function(data, status) {
+        $.get("/core?l=" + category[1] + "&h=" + category[2] + "&s=" + s, function (data, status) {
             categories[category[0]] = data;
             symbols += data.join(",") + ",";
             console.log(symbols);
@@ -91,7 +91,9 @@ function load() {
 
 function updateTable() {
     stocks.forEach(stock => {
-        $("." + stock.symbol + "_symbol").html(stock.symbol);
+        $("#" + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
+            stock.symbol + "' target = '_blank'>" +
+            stock.symbol + "</a>");
         $("." + stock.symbol + "_price").html(stock.price.toFixed(3));
         $("." + stock.symbol + "_change").html(stock.change.toFixed(3));
         $("." + stock.symbol + "_percentage").html(stock.percentage.toFixed(2) + "%");

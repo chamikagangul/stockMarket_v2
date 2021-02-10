@@ -1,13 +1,13 @@
 symbols = "";
 stocks = [];
-$(document).ready(function() {
+$(document).ready(function () {
 
     load(0, 10000000)
 
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
-        $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function(data, status) {
+        $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
             //stocks_ = JSON.parse(data);
             stocks_ = data;
             stocks = []
@@ -34,7 +34,7 @@ function logResults(json) {
 }
 
 function load(l, h, gl) {
-    $.get("/core/price?l=" + l + "&h=" + h + "&gl=" + gl + "&s=50", function(data, status) {
+    $.get("/core/price?l=" + l + "&h=" + h + "&gl=" + gl + "&s=50", function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
@@ -98,7 +98,7 @@ function sort(prop) {
 //Comparer Function    
 function GetSortOrder(prop, t) {
 
-    return function(a, b) {
+    return function (a, b) {
         if (a[prop] < b[prop]) {
             return 1 * t;
         } else if (a[prop] > b[prop]) {
@@ -110,7 +110,9 @@ function GetSortOrder(prop, t) {
 
 function updateTable() {
     stocks.forEach(stock => {
-        $("#" + stock.symbol + "_symbol").html(stock.symbol);
+        $("#" + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
+            stock.symbol + "' target = '_blank'>" +
+            stock.symbol + "</a>");
         $("#" + stock.symbol + "_price").html(stock.price.toFixed(3));
         $("#" + stock.symbol + "_change").html(stock.change.toFixed(3));
         $("#" + stock.symbol + "_percentage").html(stock.percentage.toFixed(2) + "%");

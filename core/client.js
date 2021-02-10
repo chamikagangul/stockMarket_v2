@@ -1,5 +1,7 @@
 module.exports.start = function () {
 
+    
+
     symbols = require("../data/symbols.json")
     console.log("inside client");
     const fetch = require('node-fetch');
@@ -9,6 +11,9 @@ module.exports.start = function () {
 
     var Core = require("./core")
     let core = new Core();
+
+    watchlist = require("../data/watchlist.json")
+    core.WATCHLIST = watchlist
 
     count = 0;
     var query = setInterval(() => {

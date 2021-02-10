@@ -10,6 +10,7 @@ var symbolsRouter = require('./routes/symbols');
 var usersRouter = require('./routes/users');
 var coreRouter = require('./routes/core');
 var categorisedRouter = require('./routes/categorised');
+var watchlistRouter = require('./routes/watchlist');
 
 
 var app = express();
@@ -31,6 +32,7 @@ app.use('/users', usersRouter);
 app.use('/core', coreRouter);
 app.use('/symbols', symbolsRouter);
 app.use('/categorised', categorisedRouter);
+app.use('/watchlist', watchlistRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
