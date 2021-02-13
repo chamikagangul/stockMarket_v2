@@ -1,21 +1,25 @@
 symbols = "";
 stocks = [];
 watchlist = []
-$(document).ready(function() {
+$(document).ready(function () {
 
-   
+
 
     load(0, 10000000)
 
+
+    if (getCookie("watchlist") == "") {
+        watchlist = JSON.parse("[]");
+    } else {
+        watchlist = JSON.parse(getCookie("watchlist"));
+    }
     
-    
-    watchlist =JSON.parse(getCookie("watchlist") | "[]");
 
 
-    setInterval(() => { 
+    setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
-        $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function(data, status) {
+        $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function (data, status) {
             //stocks_ = JSON.parse(data);
 
             stocks_ = data;

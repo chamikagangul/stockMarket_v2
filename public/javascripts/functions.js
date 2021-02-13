@@ -64,7 +64,7 @@ function updateTable() {
     rank_i = 0
 
     stocks.forEach(stock => {
-        console.log(watchlist);
+        
         $("#" + stock.symbol + "_symbol").html("<font size=0.7>"+ranks[rank_i]+".</font> "+"<a href='https://finance.yahoo.com/chart/" +
             stock.symbol + "' target = '_blank'" + (watchlist.indexOf(stock.symbol) >= 0 ? "class = 'watchlist'" : "") + " >" +
             stock.symbol + "</a>");
