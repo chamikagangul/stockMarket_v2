@@ -3,7 +3,7 @@ import xlrd
 import json
  
 # Give the location of the file
-loc = ("./data_2.xlsx")
+loc = "./data_2.xlsx"
 
  
 # To open Workbook
@@ -22,7 +22,8 @@ for i in range(sheet.nrows):
     if(sheet.cell_value(i, 4)=="USA"):
         if(not str(sheet.cell_value(i, 0)) in symbols):
             #print(sheet.cell_value(i, 0))
-            symbols.append(sheet.cell_value(i, 0))
+            if(len(sheet.cell_value(i, 0))<5):
+                symbols.append(sheet.cell_value(i, 0))
 
 print(len(symbols))
 # for i in range(len(symbols)):
