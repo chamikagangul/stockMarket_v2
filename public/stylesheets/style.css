@@ -58,3 +58,12 @@ a:hover {
 .watchlist {
     color: aqua;
 }
+
+#watchListTextArea{
+    background: rgb(56, 56, 56);
+    color: azure;
+}
+
+#watchListForm{
+    margin: 3%;
+}

@@ -4,9 +4,8 @@ let Core = require("../core/core")
 
 let core = new Core();
 /* GET home page. */
-router.get('/', function(req, res, next) {
-
-    res.send(core.WATCHLIST);
+router.get('/add', function(req, res, next) {
+    res.render('addWatchlist');
 });
 
 module.exports = router;
