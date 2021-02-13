@@ -55,8 +55,17 @@ function GetSortOrder(prop, t) {
 }
 
 function updateTable() {
+
+    
+    sorted = stocks.slice().sort(GetSortOrder("price", 1));
+   
+    var ranks = stocks.map(function (v) { return sorted.indexOf(v) + 1 });
+   
+    rank_i = 0
+
     stocks.forEach(stock => {
-        $("#" + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
+        
+        $("#" + stock.symbol + "_symbol").html("<font size=0.7>"+ranks[rank_i]+".</font> "+"<a href='https://finance.yahoo.com/chart/" +
             stock.symbol + "' target = '_blank'" + (watchlist.indexOf(stock.symbol) >= 0 ? "class = 'watchlist'" : "") + " >" +
             stock.symbol + "</a>");
         $("#" + stock.symbol + "_price").html(stock.price.toFixed(3));
@@ -67,15 +76,16 @@ function updateTable() {
         } else {
             $("#" + stock.symbol + "_percentage").css('color', 'green');
         }
+        rank_i +=1;
     });
 }
 
 
-function setWatchList(){
+function setWatchList() {
     WL = $("#watchListTextArea").val();
     console.log(WL);
-    WL_list =JSON.stringify(WL.split(","))
-    setCookie("watchlist",WL_list,10000);
+    WL_list = JSON.stringify(WL.split(","))
+    setCookie("watchlist", WL_list, 10000);
 }
 
 function setCookie(cname, cvalue, exdays) {

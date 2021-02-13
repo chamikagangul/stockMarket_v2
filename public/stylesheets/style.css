@@ -36,6 +36,7 @@ th{
     position: absolute;
     top: auto;
     width:75px;
+    text-align: left;
 }
 
 .title{
@@ -67,3 +68,4 @@ a:hover {
 #watchListForm{
     margin: 3%;
 }
+
