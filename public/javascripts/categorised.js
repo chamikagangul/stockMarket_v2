@@ -1,8 +1,14 @@
 symbols = "";
 stocks = [];
 categories = {}
+watchlist =[]
 $(document).ready(function() {
     load();
+
+
+
+    
+
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
@@ -91,7 +97,7 @@ function load() {
 
 function updateTable() {
     stocks.forEach(stock => {
-        $("#" + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
+        $("." + stock.symbol + "_symbol").html("<a href='https://finance.yahoo.com/chart/" +
             stock.symbol + "' target = '_blank'>" +
             stock.symbol + "</a>");
         $("." + stock.symbol + "_price").html(stock.price.toFixed(3));

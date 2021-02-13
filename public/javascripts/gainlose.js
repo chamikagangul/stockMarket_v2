@@ -1,7 +1,7 @@
 symbols = "";
 stocks = [];
 state = "g"
-
+watchlist = []
 status_ = {
     g: {
         h: 9999999,
@@ -18,6 +18,13 @@ status_ = {
 $(document).ready(function() {
 
     load(0, 10000000)
+
+    if (getCookie("watchlist") == "") {
+        watchlist = JSON.parse("[]");
+    } else {
+        watchlist = JSON.parse(getCookie("watchlist"));
+    }
+    
 
     setInterval(() => {
         //console.log(status_);

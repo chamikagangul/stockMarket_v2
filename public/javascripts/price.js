@@ -5,6 +5,13 @@ $(document).ready(function () {
 
     load(0, 10000000)
 
+
+    if (getCookie("watchlist") == "") {
+        watchlist = JSON.parse("[]");
+    } else {
+        watchlist = JSON.parse(getCookie("watchlist"));
+    }
+    
     setInterval(() => {
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
