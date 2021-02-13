@@ -9,10 +9,10 @@ $(document).ready(function() {
 
     
     
-    watchlist =JSON.parse(getCookie("watchlist"));
+    watchlist =JSON.parse(getCookie("watchlist") | "[]");
 
 
-    setInterval(() => {
+    setInterval(() => { 
         //https://chami-cors.herokuapp.com/
         //https://aldrin-cors.herokuapp.com/
         $.get("https://aldrin-cors-1.herokuapp.com/http://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbols, function(data, status) {
