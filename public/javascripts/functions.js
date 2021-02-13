@@ -57,7 +57,7 @@ function GetSortOrder(prop, t) {
 function updateTable() {
 
     
-    sorted = stocks.slice().sort(GetSortOrder("price", 1));
+    sorted = stocks.slice().sort(GetSortOrder("change", 1));
    
     var ranks = stocks.map(function (v) { return sorted.indexOf(v) + 1 });
    
