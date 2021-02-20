@@ -19,12 +19,14 @@ $(document).ready(function() {
 
     load(0, 10000000)
 
-    if (getCookie("watchlist") == "") {
-        watchlist = JSON.parse("[]");
-    } else {
-        watchlist = JSON.parse(getCookie("watchlist"));
-    }
-    
+    $.ajax({
+        type: "GET",
+        url: '/watchlist',
+        dataType: 'json',
+        success: function (data) {
+            watchlist = data;
+        }
+    })
 
     setInterval(() => {
         //console.log(status_);

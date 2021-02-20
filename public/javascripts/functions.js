@@ -81,12 +81,7 @@ function updateTable() {
 }
 
 
-function setWatchList() {
-    WL = $("#watchListTextArea").val();
-    console.log(WL);
-    WL_list = JSON.stringify(WL.split(","))
-    setCookie("watchlist", WL_list, 10000);
-}
+
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -109,3 +104,4 @@ function getCookie(cname) {
     }
     return "";
 }
+

@@ -6,7 +6,14 @@ $(document).ready(function() {
     load();
 
 
-
+    $.ajax({
+        type: "GET",
+        url: '/watchlist',
+        dataType: 'json',
+        success: function (data) {
+            watchlist = data;
+        }
+    })
     
 
     setInterval(() => {

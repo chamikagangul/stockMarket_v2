@@ -14,8 +14,11 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "knex": "^0.21.17",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.1",
+    "objection": "^2.2.14",
+    "pg": "^8.5.1",
     "read-excel-file": "^4.1.0"
   }
 }
