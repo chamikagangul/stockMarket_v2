@@ -43,8 +43,8 @@ $(document).ready(function () {
 
 });
 
-function load(l, h) {
-    $.get("/core?l=" + l + "&h=" + h + "&s=50", function (data, status) {
+function load(l, h,gl="g") {
+    $.get("/core/price?l=" + l + "&h=" + h + "&gl=" + gl + "&s=50", function (data, status) {
         symbols = data.join(",")
         ht = ""
         data.forEach(s => {
